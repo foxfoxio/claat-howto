@@ -1,0 +1,27 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-10-14T20:17:43Z",
+  "id": "howto-md",
+  "duration": 27,
+  "title": "Create a codelab page with Codelabs command line tool (claat)",
+  "authors": "foxfox dev team",
+  "summary": "Create a codelab page with Codelabs command line tool (claat)",
+  "source": "howto-md.md",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "guide",
+    "howto"
+  ],
+  "tags": [
+    "beginner",
+    "howto"
+  ],
+  "feedback": "https://github.com/foxfoxio/claat-howto/issues",
+  "url": "howto-md"
+}

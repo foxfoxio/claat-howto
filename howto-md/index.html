@@ -1,0 +1,146 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Create a codelab page with Codelabs command line tool (claat)</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="howto-md"
+                  title="Create a codelab page with Codelabs command line tool (claat)"
+                  environment="web"
+                  feedback-link="https://github.com/foxfoxio/claat-howto/issues">
+    
+      <google-codelab-step label="Overview" duration="1">
+        <p>This tutorial will walk you through how to create a codelab page by using <code>claat</code> (Codelabs command line tool) and deploy it to server</p>
+<h2 is-upgraded>You will learn</h2>
+<ul>
+<li>How to create a codelab source with markdown</li>
+<li>How to generate codelab static html files</li>
+<li>How to serve codelab locally</li>
+</ul>
+<h2 is-upgraded>Prerequisites</h2>
+<ul>
+<li>Markdown editor, i.e. <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a></li>
+<li>Docker, see <a href="https://docs.docker.com/get-docker/" target="_blank">docker docs</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Create a Markdown file" duration="15">
+        <p>Create a file named <code>howto-codelab.md</code>. Open the file in your markdown editor.</p>
+<h2 is-upgraded>Formatting</h2>
+<p>Added <strong>Codelab Metadata</strong> at the top of the file. Metadata, a key/value pair, provide information about the codelab page, i.e. summary, id, tags, status, authors, etc.</p>
+<p><strong>Heading 1</strong> paragraph uses as a title the codelab.</p>
+<pre><code language="language-markdown" class="language-markdown">summary: Create a codelab tutorial page
+id: tutorial
+categories: guide
+tags: howto, beginner
+status: Published
+authors: foxfox dev team
+Feedback Link: https://github.com/foxfoxio/claat-howto/issues
+
+# Create a codelab tutorial page
+</code></pre>
+<p>Within the steps of your codelab, use <strong>Heading 2</strong>, <strong>Heading 3</strong>, <strong>Heading 4</strong> paragraph to organize you content</p>
+<pre><code language="language-markdown" class="language-markdown">## Overview
+Duration: 1
+
+### You will learn
+- How to create a codelab source with markdown
+- How to generate codelab static html files
+- How to view the generated result
+
+### Prerequisites
+- Markdown editor
+- Docker
+
+## Getting start
+Duration: 15
+
+Lorem ipsum dolor sit amet
+
+### Create a file
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco __laboris nisi ut__ aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+### Formatting
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut _aliquip ex ea commodo_ consequat. Duis aute [irure dolor in](http://example.com) reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+| Tables   |      Are      |  Cool |
+|----------|:-------------:|------:|
+| col 1 is |  left-aligned | $1600 |
+| col 2 is |    centered   |   $12 |
+| col 3 is | right-aligned |    $1 |
+
+</code></pre>
+<p>Use <code>Duration:</code> to annotates time estimates for each step. For last step, set the duration to be <code>0</code></p>
+<p>You can use markdown syntax for other formatting, i.e. hyperlink, image, code snippet, table, etc.</p>
+<p>See <a href="https://github.com/googlecodelabs/tools/blob/master/FORMAT-GUIDE.md" target="_blank">Codelab Formatting Guide</a> for the complete information</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Generate static html files" duration="5">
+        <p>Use <code>claat export</code> command to generate html files from the markdown file.</p>
+<p>We will run claat in a docker container <code>foxfoxio/claat</code>, in order to avoid installing <code>Go</code></p>
+<pre><code language="language-bash" class="language-bash">docker run -it --rm -v $(pwd):/app foxfoxio/claat export howto-codelab.md
+</code></pre>
+<p>The output will be generated to directory as specified in <code>id</code> in codelab metadata, otherwise uses source path.</p>
+<p>To use binary version directly, see <a href="https://github.com/googlecodelabs/tools" target="_blank">for more information</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Serve codelab locally" duration="5">
+        <p>Use <code>clatt serve</code> command to create a http server locally.</p>
+<pre><code language="language-bash" class="language-bash">  docker run --rm -v $(pwd):/app -p 9090:9090 foxfoxio/claat serve -addr 0.0.0.0:9090
+</code></pre>
+<p>Open a browser and navigate to <code>http://localhost:9090/tutorial</code>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Deploy" duration="1">
+        <p>You can deploy static html codelab with the hosting provider you choose</p>
+<ul>
+<li>Firebase hosting</li>
+<li>Github page</li>
+<li>etc.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Done" duration="0">
+        <p>Happy coding <code>_へ__(‾◡◝ )&gt;</code></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
